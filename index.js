@@ -19,15 +19,13 @@ let players = [
 ];
 redoElement.addEventListener("click", function (e) {
 
-		let fromRedo = state.redo.pop();
-	
+	let fromRedo = state.redo.pop();
 	state.history.push(fromRedo); 
 
 	elements[fromRedo.number].classList.add(fromRedo.value);
 	if(!state.redo.length){
 		redoElement.setAttribute('disabled', 'disabled');
 	}
-
 	state.step++;
 	if(state.step){
 		undoElement.removeAttribute('disabled');
@@ -37,7 +35,6 @@ redoElement.addEventListener("click", function (e) {
 
 });
 undoElement.addEventListener("click", function (e) {
-
 
 	let toRedo = state.history.pop();
 	console.log('redo',toRedo);
@@ -52,7 +49,6 @@ undoElement.addEventListener("click", function (e) {
 
 	if(!state.step){
 		undoElement.setAttribute('disabled', 'disabled');
-
 	}
 });
 
@@ -101,27 +97,26 @@ function isWinning(value) {
     }
 function checkWinner() {
 	
-	
 	let winnerElem = document.querySelectorAll('.won-title')[0];
 	let wonElem = document.querySelectorAll('.won-message')[0];
 	
 	for (i = 0; i < players.length; i++) {
         if (isWinning(players[i]['id'])) {
         	
-			winnerElem.innerHTML =	players[i]['won'];
+		winnerElem.innerHTML =	players[i]['won'];
         	winnerElem.classList.remove("hidden");
         	state = {
 				step: 0,
 				history: []
 			};
-			for(let i = 0; i < elements.length;i++){
-				elements[i].classList.remove('r');
-				elements[i].classList.remove('ch');
-			}
+		for(let i = 0; i < elements.length;i++){
+			elements[i].classList.remove('r');
+			elements[i].classList.remove('ch');
+		}
 			
-			redoElement.setAttribute('disabled', 'disabled');
-			undoElement.setAttribute('disabled', 'disabled');
-          return;
+		redoElement.setAttribute('disabled', 'disabled');
+		undoElement.setAttribute('disabled', 'disabled');
+          	return;
         }
     }
 
